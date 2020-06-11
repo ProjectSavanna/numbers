@@ -1,8 +1,18 @@
 Library
-  library(natural/sources.cm)
-  library(interval/sources.cm)
+  signature NATURAL
+  structure Natural
+
+  signature INTERVAL
+  structure Interval
 is
   $/basis.cm
 
-  natural/sources.cm (bind:(anchor:numbers.cm value:.))
-  interval/sources.cm (bind:(anchor:numbers.cm value:.))
+  ORDERED.sig
+  INTEGRAL.sig
+  FLOATING.sig
+
+  NATURAL.sig
+  Natural.sml
+
+  INTERVAL.sig
+  Interval.sml
