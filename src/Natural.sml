@@ -39,6 +39,24 @@ structure Natural :> NATURAL =
     | (Succ m,n) => m * n + n
 
 
+    local
+      val rec divmod = fn (n,d) => (
+        case compare (n,d) of
+          LESS              => (Zero,n)
+        | (EQUAL | GREATER) => (
+            let
+              val (q,r) = divmod (n - d, d)
+            in
+              (Succ q, r)
+            end
+          )
+      )
+    in
+      val op div = #1 o divmod
+      val op mod = #2 o divmod
+    end
+
+
     val rec min = fn
       (Zero  ,Zero  ) => Zero
     | (Zero  ,Succ _) => Zero

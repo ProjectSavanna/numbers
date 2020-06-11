@@ -8,6 +8,9 @@ signature NATURAL =
     val - : t * t -> t
     val * : t * t -> t
 
+    val div : t * t -> t
+    val mod : t * t -> t
+
     val min : t * t -> t
     val max : t * t -> t
   end
