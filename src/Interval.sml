@@ -86,46 +86,22 @@ structure Interval :> INTERVAL =
 
 
     local
-      val carry = fn (I f,I g) => (
-        let
-          val (b1,_) = f ()
-          val (b2,_) = g ()
-        in
-          case (b1,b2) of
-            (false,false) => SOME Fn.id
-          | (false,true ) => NONE
-          | (true ,false) => NONE
-          | (true ,true ) => SOME not
-        end
-      )
-      val xor = fn
-        (false,false) => false
-      | (false,true ) => true
-      | (true ,false) => true
-      | (true ,true ) => false
+      val peek = fn b => fn r => (if b then Fn.id else not) (r ())
+      val carry = fn
+        (false,false) => Fn.const
+      | (false,true ) => peek
+      | (true ,false) => peek
+      | (true ,true ) => Fn.const o not
     in
       val rec op + = fn (I f,I g) => I (fn () =>
         let
-          val (b1,f') = f ()
-          val (b2,g') = g ()
-          val rest as I r = f' + g'
+          val (b1,I f') = f ()
+          val (b2,I g') = g ()
+          val (b1',_) = f' ()
+          val (b2',_) = g' ()
+          val rest as I r = I f' + I g'
         in
-          (
-            case carry (f',g') of
-              NONE => (
-                let
-                  val (b,_) = r ()
-                in
-                  case (b1,b2) of
-                    (false,false) => not b
-                  | (false,true ) => b
-                  | (true ,false) => b
-                  | (true ,true ) => not b
-                end
-              )
-            | SOME f => f (xor (b1,b2)),
-            rest
-          )
+          (carry (b1',b2') (b1 <> b2) (#1 o r), rest)
         end
       )
     end
