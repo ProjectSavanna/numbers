@@ -31,4 +31,7 @@ structure Interval :> INTERVAL =
         (b,unfold f x')
       end
     )
+
+    val scale = fn n : IntInf.int =>
+      unfold (fn k => if 2 * k >= n then (B1, 2 * k - n) else (B0, 2 * k))
   end

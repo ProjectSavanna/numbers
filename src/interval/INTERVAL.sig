@@ -6,4 +6,6 @@ signature INTERVAL =
     include ORDERED where type t = interval
 
     val unfold : ('a -> bit * 'a) -> 'a -> interval
+
+    val scale : IntInf.int -> IntInf.int -> interval
   end
