@@ -24,11 +24,11 @@ structure Interval :> INTERVAL =
     end
 
     local
-      fun aux pow 0 _ = 0.0
-        | aux pow n (I f) = (
+      fun aux pow Natural.Zero _ = 0.0
+        | aux pow (Natural.Succ n) (I f) = (
             let
               val (b,f') = f ()
-              val res = aux (pow / 2.0) (n - 1) f'
+              val res = aux (pow / 2.0) n f'
             in
               case b of
                 B0 => res
@@ -37,7 +37,7 @@ structure Interval :> INTERVAL =
           )
     in
       val floor = aux 0.5
-      val toFloat = floor Real.precision
+      val toFloat = (floor o Natural.fromInt o IntInf.fromInt) Real.precision
     end
 
     local
