@@ -106,4 +106,11 @@ structure Interval :> INTERVAL =
         end
       )
     end
+
+    local
+      infix 5 ***
+      fun f *** g = fn (x,y) => (f x, g y)
+    in
+      val rec ~ = fn I f => I (fn () => (not *** ~) (f ()))
+    end
   end
