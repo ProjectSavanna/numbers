@@ -10,7 +10,7 @@ structure Natural :> NATURAL =
     in
       val fromInt = fn n =>
         if n < 0
-          then raise Fail "Natural number cannot be negative"
+          then raise Domain
           else fromInt n
     end
 
