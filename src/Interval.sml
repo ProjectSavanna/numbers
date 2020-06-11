@@ -82,7 +82,7 @@ structure Interval :> INTERVAL =
         in
           (b, if b then Natural.- (k2,n) else k2)
         end
-      ) o Fn.curry Natural.min n  (* treat numbers above bound as at bound *)
+      ) o Fn.curry (Fn.flip Natural.mod) n
     end
 
 
