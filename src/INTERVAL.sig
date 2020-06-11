@@ -8,6 +8,6 @@ signature INTERVAL =
 
     val scale : Natural.t -> Natural.t -> interval
 
-    (* May not terminate! *)
+    (* Result may not be productive! *)
     val + : interval * interval -> interval
   end
