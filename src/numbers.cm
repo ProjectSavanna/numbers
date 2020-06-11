@@ -4,6 +4,9 @@ Library
 
   signature INTERVAL
   structure Interval
+
+  signature RATIONAL
+  structure Rational
 is
   $/basis.cm
 
@@ -16,3 +19,6 @@ is
 
   INTERVAL.sig
   Interval.sml
+
+  RATIONAL.sig
+  Rational.sml
