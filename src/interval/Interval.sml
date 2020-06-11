@@ -36,7 +36,8 @@ structure Interval :> INTERVAL =
             end
           )
     in
-      val toFloat = aux 0.5 Real.precision
+      val floor = aux 0.5
+      val toFloat = floor Real.precision
     end
 
     local
