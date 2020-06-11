@@ -5,6 +5,41 @@ structure Interval :> INTERVAL =
     type t = interval
 
     local
+      val rec aux = fn () => I (fn () => (B0,aux ()))
+    in
+      val rec fromFloat = fn r => (
+        if Real.== (r,0.0)
+          then aux ()
+          else (
+            let
+              val (b,r') =
+                if r >= 0.5
+                  then (B1, r - 0.5)
+                  else (B0, r      )
+            in
+              I (Fn.const (b,fromFloat (2.0 * r')))
+            end
+          )
+      )
+    end
+
+    local
+      fun aux pow 0 _ = 0.0
+        | aux pow n (I f) = (
+            let
+              val (b,f') = f ()
+              val res = aux (pow / 2.0) (n - 1) f'
+            in
+              case b of
+                B0 => res
+              | B1 => res + pow
+            end
+          )
+    in
+      val toFloat = aux 0.5 Real.precision
+    end
+
+    local
       val aux = fn
         (B0,B0) => EQUAL
       | (B0,B1) => LESS

@@ -3,7 +3,7 @@ signature INTERVAL =
     datatype bit = B0 | B1
     datatype interval = I of unit -> bit * interval
 
-    include ORDERED where type t = interval
+    include FLOATING where type t = interval
 
     val unfold : ('a -> bit * 'a) -> 'a -> interval
 
