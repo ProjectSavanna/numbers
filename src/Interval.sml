@@ -5,10 +5,11 @@ structure Interval :> INTERVAL =
 
     local
       val rec aux = fn () => I (fn () => (false,aux ()))
+      val zero = aux ()
     in
       val rec fromFloat = fn r => (
         if Real.== (r,0.0)
-          then aux ()
+          then zero
           else (
             let
               val b = r >= 0.5
