@@ -1,0 +1,6 @@
+Library
+  library(natural/sources.cm)
+is
+  $/basis.cm
+
+  natural/sources.cm (bind:(anchor:numbers.cm value:.))
