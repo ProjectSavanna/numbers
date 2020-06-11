@@ -1,7 +1,7 @@
 structure Natural :> NATURAL =
   struct
-    datatype t = Succ of t | Zero
-    type nat = t
+    datatype nat = Succ of nat | Zero
+    type t = nat
 
     val rec op + = fn
       (Zero  ,n) => n

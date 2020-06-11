@@ -1,17 +1,9 @@
-local
-  signature DATATYPE =
-    sig
-      datatype t = Zero | Succ of t
-    end
-in
-  signature NATURAL =
-    sig
-      include INTEGRAL
-      include DATATYPE
+signature NATURAL =
+  sig
+    datatype nat = Zero | Succ of nat
 
-      type nat = t
+    include INTEGRAL where type t = nat
 
-      val + : t * t -> t
-      val * : t * t -> t
-    end
-end
+    val + : t * t -> t
+    val * : t * t -> t
+  end
