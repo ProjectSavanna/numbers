@@ -1,0 +1,10 @@
+Library
+  signature NATURAL
+  structure Natural
+is
+  $/basis.cm
+
+  $numbers.cm/core/sources.cm
+
+  NATURAL.sig
+  Natural.sml
