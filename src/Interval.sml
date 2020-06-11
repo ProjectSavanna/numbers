@@ -1,21 +1,18 @@
 structure Interval :> INTERVAL =
   struct
-    datatype bit = B0 | B1
-    datatype interval = I of unit -> bit * interval
+    datatype interval = I of unit -> bool * interval
     type t = interval
 
     local
-      val rec aux = fn () => I (fn () => (B0,aux ()))
+      val rec aux = fn () => I (fn () => (false,aux ()))
     in
       val rec fromFloat = fn r => (
         if Real.== (r,0.0)
           then aux ()
           else (
             let
-              val (b,r') =
-                if r >= 0.5
-                  then (B1, r - 0.5)
-                  else (B0, r      )
+              val b = r >= 0.5
+              val r' = if b then r - 0.5 else r
             in
               I (Fn.const (b,fromFloat (2.0 * r')))
             end
@@ -31,8 +28,8 @@ structure Interval :> INTERVAL =
               val res = aux (pow / 2.0) n f'
             in
               case b of
-                B0 => res
-              | B1 => res + pow
+                false => res
+              | true  => res + pow
             end
           )
     in
@@ -42,10 +39,10 @@ structure Interval :> INTERVAL =
 
     local
       val aux = fn
-        (B0,B0) => EQUAL
-      | (B0,B1) => LESS
-      | (B1,B0) => GREATER
-      | (B1,B1) => EQUAL
+        (false,false) => EQUAL
+      | (false,true ) => LESS
+      | (true ,false) => GREATER
+      | (true ,true ) => EQUAL
     in
       val rec compare = fn (I f, I g) => (
         let
@@ -68,6 +65,12 @@ structure Interval :> INTERVAL =
       end
     )
 
-    val scale = fn n : IntInf.int =>
-      unfold (fn k => if 2 * k >= n then (B1, 2 * k - n) else (B0, 2 * k))
+    val scale = fn n : IntInf.int => unfold (fn k =>
+      let
+        val k2 = k * 2
+        val b = k2 >= n
+      in
+        (b, if b then k2 - n else k2)
+      end
+    )
   end
