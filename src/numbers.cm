@@ -1,6 +1,8 @@
 Library
   library(natural/sources.cm)
+  library(interval/sources.cm)
 is
   $/basis.cm
 
   natural/sources.cm (bind:(anchor:numbers.cm value:.))
+  interval/sources.cm (bind:(anchor:numbers.cm value:.))

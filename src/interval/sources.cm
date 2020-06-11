@@ -1,0 +1,10 @@
+Library
+  signature INTERVAL
+  structure Interval
+is
+  $/basis.cm
+
+  $numbers.cm/core/sources.cm
+
+  INTERVAL.sig
+  Interval.sml

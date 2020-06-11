@@ -1,0 +1,3 @@
+signature INTERVAL =
+  sig
+  end
