@@ -1,8 +1,10 @@
 Library
   signature ORDERED
   signature INTEGRAL
+  signature FLOATING
 is
   $/basis.cm
 
   ORDERED.sig
   INTEGRAL.sig
+  FLOATING.sig
