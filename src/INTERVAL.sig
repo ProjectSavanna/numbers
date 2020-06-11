@@ -6,5 +6,5 @@ signature INTERVAL =
 
     val unfold : ('a -> bool * 'a) -> 'a -> interval
 
-    val scale : IntInf.int -> IntInf.int -> interval
+    val scale : Natural.t -> Natural.t -> interval
   end

@@ -65,12 +65,22 @@ structure Interval :> INTERVAL =
       end
     )
 
-    val scale = fn n : IntInf.int => unfold (fn k =>
-      let
-        val k2 = k * 2
-        val b = k2 >= n
-      in
-        (b, if b then k2 - n else k2)
-      end
-    )
+    local
+      val double = Fn.curry Natural.* (Natural.fromInt 2)
+      val op >= = fn (a,b) => (
+        case Natural.compare (a,b) of
+          LESS    => false
+        | EQUAL   => true
+        | GREATER => true
+      )
+    in
+      val scale = fn n => unfold (fn k =>
+        let
+          val k2 = double k
+          val b = k2 >= n
+        in
+          (b, if b then Natural.- (k2,n) else k2)
+        end
+      ) o Fn.curry Natural.min n  (* treat numbers above bound as at bound *)
+    end
   end
