@@ -1,6 +1,11 @@
 Library
-  library(natural/sources.cm)
+  signature NATURAL
+  structure Natural
 is
   $/basis.cm
 
-  natural/sources.cm (bind:(anchor:numbers.cm value:.))
+  ORDERED.sig
+  INTEGRAL.sig
+
+  NATURAL.sig
+  Natural.sml
