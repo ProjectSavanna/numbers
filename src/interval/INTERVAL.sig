@@ -4,4 +4,6 @@ signature INTERVAL =
     datatype interval = I of unit -> bit * interval
 
     include ORDERED where type t = interval
+
+    val unfold : ('a -> bit * 'a) -> 'a -> interval
   end

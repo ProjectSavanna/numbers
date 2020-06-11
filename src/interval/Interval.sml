@@ -23,4 +23,12 @@ structure Interval :> INTERVAL =
         end
       )
     end
+
+    fun unfold f x = I (fn () =>
+      let
+        val (b,x') = f x
+      in
+        (b,unfold f x')
+      end
+    )
   end
