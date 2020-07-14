@@ -57,6 +57,7 @@ structure Interval :> INTERVAL =
         end
       )
     end
+    val eq = Fn.curry op = EQUAL o compare
 
     fun unfold f x = I (fn () =>
       let

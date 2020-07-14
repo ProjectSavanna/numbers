@@ -18,6 +18,7 @@ structure Natural :> NATURAL =
       Zero   => 0
     | Succ n => IntInf.+ (toInt n, 1)
 
+    val eq : t * t -> bool = (op =)
     val rec compare = fn
       (Zero  ,Zero  ) => EQUAL
     | (Zero  ,Succ _) => LESS

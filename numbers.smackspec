@@ -1,0 +1,5 @@
+description: Numeric types
+maintainer: Harrison Grodin <hgrodin@andrew.cmu.edu>
+keywords: numbers natural interval rational
+bug-url: https://github.com/HarrisonGrodin/ml-numbers/issues
+requires: typeclasses v1

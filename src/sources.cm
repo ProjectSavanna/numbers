@@ -9,8 +9,8 @@ Library
   structure Rational
 is
   $/basis.cm
+  $SMACKAGE/typeclasses/v1/sources.cm
 
-  ORDERED.sig
   INTEGRAL.sig
   FLOATING.sig
 
