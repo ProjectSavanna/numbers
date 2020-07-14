@@ -31,6 +31,6 @@ structure Rational :> RATIONAL =
     val op - = fn (r1,r2) => r1 + ~r2
 
     val op * = fn ((a,b),(x,y)) => (a * x) // (b * y)
-    val inv = fn (a,b) => (b,a)
+    val inv = Fn.flip (op //)
     val op div = fn (r1,r2) => r1 * inv r2
   end
