@@ -22,8 +22,13 @@ structure Rational :> RATIONAL =
     val zero = (0,1)
     val one  = (1,1)
 
-    val equal : t * t -> bool = (op =)
+    val eq : t * t -> bool = (op =)
     val compare = fn ((a,b),(x,y)) => Int.compare (a * y, b * x)
+    val toString = fn (x,y) => Int.toString x ^ " // " ^ Int.toString y
+    val percent =
+      Fn.curry (Fn.flip (op ^)) "%"
+      o Int.toString
+      o (fn (a,b) => (100 * a) div b)
 
     val op + = fn ((a,b),(x,y)) => (a * y + b * x) // (b * y)
     val ~ = fn (a,b) => (~a,b)
