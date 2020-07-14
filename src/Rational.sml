@@ -7,7 +7,8 @@ structure Rational :> RATIONAL =
         (m,0) => m
       | (m,n) => gcd (n, m mod n)
     in
-      val hide = fn (x,y) => (
+      infix 8 //
+      val op // = fn (x,y) => (
         let
           val gcd = gcd (x,y)
         in
@@ -15,10 +16,8 @@ structure Rational :> RATIONAL =
         end
       )
     end
-    val show = Fn.id
 
-    infix 8 //
-    val op // = hide
+    val show = Fn.id
 
     val zero = (0,1)
     val one  = (1,1)
@@ -32,5 +31,5 @@ structure Rational :> RATIONAL =
 
     val op * = fn ((a,b),(x,y)) => (a * x) // (b * y)
     val inv = Fn.flip (op //)
-    val op div = fn (r1,r2) => r1 * inv r2
+    val op / = fn (r1,r2) => r1 * inv r2
   end
