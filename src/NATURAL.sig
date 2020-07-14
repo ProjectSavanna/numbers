@@ -2,15 +2,9 @@ signature NATURAL =
   sig
     datatype nat = Zero | Succ of nat
 
-    include INTEGRAL where type t = nat
+    include sig
+      include INTEGRAL MONOID_ADD MONOID_MUL
+    end where type t = nat
 
-    val + : t * t -> t
-    val - : t * t -> t
-    val * : t * t -> t
-
-    val div : t * t -> t
-    val mod : t * t -> t
-
-    val min : t * t -> t
-    val max : t * t -> t
+    val - : t * t -> t  (* iterated predecessor *)
   end

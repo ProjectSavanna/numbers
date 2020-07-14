@@ -14,6 +14,11 @@ is
   INTEGRAL.sig
   FLOATING.sig
 
+  MONOID_ADD.sig
+  GROUP_ADD.sig
+  MONOID_MUL.sig
+  GROUP_MUL.sig
+
   NATURAL.sig
   Natural.sml
 

@@ -88,6 +88,12 @@ structure Interval :> INTERVAL =
 
 
     local
+      val rec aux = fn () => I (fn () => (false,aux ()))
+    in
+      val zero = aux ()
+    end
+
+    local
       val peek = fn b => fn r => (if b then Fn.id else not) (r ())
       val carry = fn
         (false,false) => Fn.const
@@ -114,4 +120,6 @@ structure Interval :> INTERVAL =
     in
       val rec ~ = fn I f => I (fn () => (not *** ~) (f ()))
     end
+
+    val op - = fn (x,y) => x + ~y
   end

@@ -26,6 +26,9 @@ structure Natural :> NATURAL =
     | (Succ m,Succ n) => compare (m,n)
 
 
+    val zero = Zero
+    val one  = Succ Zero
+
     val rec op + = fn
       (Zero  ,n) => n
     | (Succ m,n) => Succ (m + n)

@@ -6,10 +6,7 @@ signature INTERVAL =
 
     val scale : Natural.t -> Natural.t -> interval
 
-    include FLOATING where type t = interval
-
-    (* Result may not be productive! *)
-    val + : t * t -> t
-
-    val ~ : t -> t
+    include sig
+      include FLOATING GROUP_ADD
+    end where type t = interval
   end
