@@ -71,5 +71,5 @@ structure Natural :> NATURAL =
       (Zero  ,Zero  ) => Zero
     | (Zero  ,Succ n) => Succ n
     | (Succ m,Zero  ) => Succ m
-    | (Succ m,Succ n) => Succ (min (m,n))
+    | (Succ m,Succ n) => Succ (max (m,n))
   end
