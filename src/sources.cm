@@ -6,6 +6,7 @@ Library
   structure Interval
 
   signature RATIONAL
+  functor Rational
   structure Rational
 is
   $/basis.cm
@@ -26,4 +27,5 @@ is
   Interval.sml
 
   RATIONAL.sig
+  Rational.fun
   Rational.sml
